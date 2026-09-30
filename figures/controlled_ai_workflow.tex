@@ -58,17 +58,15 @@
 \node[smallbox, right=18mm of contextsource] (processingcontext)
     {Processing and\\Orchestration Context};
 
-\node[widebox, below=7mm of engsource] (evidence)
+\node[widebox, text width=43mm, below=7mm of engsource] (evidence)
     {Source-grounded Evidence};
 
-\node[widebox, below=7mm of contextsource] (interpretation)
+\node[widebox, text width=43mm, below=7mm of contextsource] (interpretation)
     {Probabilistic Interpretation};
 
 \draw[arrow] (engsource) -- (evidence);
 
-\draw[arrow]
-    (evidence.east)
-    -| ($(interpretation.north west)+(4mm,0)$);
+\draw[arrow] (evidence.east) -- (interpretation.west);
 
 \draw[arrow]
     (contextsource.south)
