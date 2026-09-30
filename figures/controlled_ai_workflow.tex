@@ -58,10 +58,10 @@
 \node[smallbox, right=18mm of contextsource] (processingcontext)
     {Processing and\\Orchestration Context};
 
-\node[widebox, below=9mm of engsource] (evidence)
+\node[widebox, below=7mm of engsource] (evidence)
     {Source-grounded Evidence};
 
-\node[widebox, below=9mm of contextsource] (interpretation)
+\node[widebox, below=7mm of contextsource] (interpretation)
     {Probabilistic Interpretation};
 
 \draw[arrow] (engsource) -- (evidence);
@@ -82,15 +82,15 @@
 % Interpretation outcome
 % ------------------------------------------------------------------
 
-\node[widebox, below=8mm of interpretation] (uncertainty)
+\node[widebox, below=6mm of interpretation] (uncertainty)
     {Decision Evidence:\\
      Consensus, Variance, Shared Ambiguity};
 
-\node[widebox, below=8mm of uncertainty] (hea)
+\node[widebox, below=6mm of uncertainty] (hea)
     {\textbf{Human Engineering Authority}\\
      Authorization of Engineering Meaning};
 
-\node[widebox, below=8mm of hea] (authorized)
+\node[widebox, below=6mm of hea] (authorized)
     {Authorized Engineering Information};
 
 \draw[arrow] (interpretation) -- (uncertainty);
@@ -101,19 +101,19 @@
 % Model / representation authority
 % ------------------------------------------------------------------
 
-\node[widebox, below=8mm of authorized] (modelauthority)
+\node[widebox, below=6mm of authorized] (modelauthority)
     {\textbf{Model Authority}\\
      Structural Placement and Representation};
 
-\node[widebox, below=8mm of modelauthority] (controlled)
+\node[widebox, below=6mm of modelauthority] (controlled)
     {Controlled Engineering State\\
      \emph{e.g., Internal Engineering Model (IEM)}};
 
-\node[widebox, below=8mm of controlled] (rules)
+\node[widebox, below=6mm of controlled] (rules)
     {Rules, Constraints, and\\
      Target-specific Formulation};
 
-\node[widebox, below=8mm of rules] (artifact)
+\node[widebox, below=6mm of rules] (artifact)
     {Engineering Artifact};
 
 \draw[arrow] (authorized) -- (modelauthority);
@@ -125,13 +125,13 @@
 % Assessment and release
 % ------------------------------------------------------------------
 
-\node[smallbox, below left=9mm and 7mm of artifact] (validation)
+\node[smallbox, below left=7mm and 7mm of artifact] (validation)
     {Technical\\Validation};
 
-\node[smallbox, below right=9mm and 7mm of artifact] (review)
+\node[smallbox, below right=7mm and 7mm of artifact] (review)
     {Human Model\\Review};
 
-\node[widebox, below=13mm of artifact] (release)
+\node[widebox, below=10mm of artifact] (release)
     {Release};
 
 \draw[arrow] (artifact) -- (validation);
