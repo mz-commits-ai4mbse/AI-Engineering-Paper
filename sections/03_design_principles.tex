@@ -33,7 +33,7 @@ justify engineering statements and which information merely supports their inter
 
 The investigated architecture therefore distinguished between \emph{Engineering Sources},
 \emph{Context Sources}, and the \emph{Processing and Orchestration Context}. This distinction
-made it possible to separate domain-specific engineering evidence from information that
+made it possible to separate source-grounded evidence from information that
 supported interpretation or influenced processing.
 
 The exact source taxonomy depends on the engineering task. The general principle is that
@@ -152,7 +152,7 @@ Persisted intermediate states also support change analysis. If a source changes,
 interpretations, decisions, and downstream artifacts can be identified rather than treating
 the final result as an isolated output.
 
-\subsection{Verify Results Independently of Their Generation}
+\subsection{Assess Results Separately from Their Generation}
 \label{sec:principle_verification}
 
 Generation and the subsequent assessment of the resulting engineering artifact should
@@ -169,7 +169,7 @@ artifact and the engineering task. Depending on the application, this may includ
 checks, structural validation, semantic constraints, consistency checks, model-tool
 validation, human model review, or further domain-specific acceptance criteria.
 
-The investigated architecture treated technical validation, human review, and final release
+The investigated architecture treated technical validation, human model review, and final release
 as distinct concerns. This separation prevents successful generation from being interpreted
 as automatic approval and creates an explicit assurance boundary before the resulting
 artifact is used in subsequent engineering work.
@@ -177,5 +177,5 @@ artifact is used in subsequent engineering work.
 Taken together, these principles describe a controlled division of responsibilities:
 probabilistic AI supports interpretation where ambiguity exists; engineering authority
 governs consequential decisions; rule-bound processing handles sufficiently determined
-states; provenance and traceability preserve the processing history; and independent
-verification provides evidence about the resulting artifact.
+states; provenance and traceability preserve the processing history; and separate
+assessment provides evidence about the resulting artifact.

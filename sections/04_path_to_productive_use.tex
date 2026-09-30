@@ -3,14 +3,14 @@
 
 The design principles described in Section~\ref{sec:design_principles} can be organized
 into a structured sequence for designing an AI-supported engineering workflow. The
-sequence is not intended as a universal implementation lifecycle. Its purpose is to make
-the main engineering questions explicit before probabilistic AI is integrated into a
-productive process.
+sequence is not intended as a universal implementation lifecycle. Instead, it makes the
+main engineering decisions explicit before probabilistic AI becomes part of a productive
+process.
 
-Figure~\ref{fig:controlled_ai_workflow} summarizes this processing logic. It abstracts the
-architecture investigated in the underlying work into a sequence from source-grounded
-information through probabilistic interpretation and explicit engineering authority to a
-controlled engineering state and a verified engineering artifact.
+Figure~\ref{fig:controlled_ai_workflow} summarizes this processing logic from
+source-grounded information through probabilistic interpretation and explicit engineering
+authority to a controlled engineering state and an engineering artifact that is
+subsequently assessed.
 
 \input{figures/controlled_ai_workflow}
 
@@ -22,137 +22,102 @@ implications for an AI-supported engineering workflow.
 \subsection{Define the Engineering Task and Intended Result}
 \label{sec:path_task}
 
-The starting point is the engineering task rather than the AI technology. The intended
-result, the boundaries of the task, and the criteria by which the result will later be
-assessed need to be defined first.
-
-This establishes the basis for all subsequent decisions. Without a sufficiently bounded
-task, it remains unclear which information is relevant, where interpretation is required,
-which decisions have engineering consequences, and which form of verification is
-appropriate.
-
-The task definition should therefore clarify at least the engineering purpose, the
-expected result, the scope of AI support, and the conditions under which the result can be
-considered usable for subsequent engineering activities.
+The starting point is the engineering task rather than the AI technology. The engineering
+purpose, expected result, scope of AI support, and relevant acceptance criteria should be
+defined first. This establishes which information is relevant, where interpretation may be
+required, which decisions have engineering consequences, and how the resulting artifact
+will later be assessed.
 
 \subsection{Establish the Information Basis}
 \label{sec:path_information}
 
-The next step is to identify the information on which the engineering task may rely.
-Available information should not only be collected but classified according to its role
-within the workflow.
+The available information should then be classified according to its role within the
+workflow. In the investigated architecture, \emph{Engineering Sources} provided the basis
+for engineering statements, while \emph{Context Sources} supported interpretation and the
+\emph{Processing and Orchestration Context} described conditions influencing processing.
 
-The underlying investigation distinguished \emph{Engineering Sources}, \emph{Context
-Sources}, and the \emph{Processing and Orchestration Context}. This separation made it
-possible to distinguish information that could support statements about the system from
-information that supported interpretation or influenced the processing procedure.
-
-For another engineering task, the exact classification may differ. The relevant question
-remains which information may justify an engineering statement and which information is
-used only to interpret, structure, or process it.
+The exact categories may differ for another task. What should remain explicit is which
+information may justify an engineering statement and which information only supports its
+interpretation or processing.
 
 \subsection{Identify Where Interpretation Is Required}
 \label{sec:path_interpretation}
 
-Once the information basis is known, the workflow can distinguish between information that
-can be processed through explicit rules and information that requires semantic
-interpretation.
+The workflow should distinguish between information that can be processed through explicit
+rules and information that requires semantic interpretation. Probabilistic AI is especially
+relevant at the latter boundary, for example when natural-language descriptions,
+inconsistent terminology, incomplete structures, or different abstraction levels have to be
+interpreted before further engineering processing.
 
-Probabilistic AI is particularly useful at the latter boundary. Natural-language
-descriptions, incomplete structures, inconsistent terminology, and different abstraction
-levels can require interpretation before they can be integrated into a controlled
-engineering state.
-
-The purpose of AI processing at this stage is not to replace the engineering decision but
-to provide interpretable candidates and supporting evidence for that decision.
+Its role at this stage is to provide candidate interpretations and decision evidence rather
+than to establish engineering authority.
 
 \subsection{Make Unresolved Information Explicit}
 \label{sec:path_uncertainty}
 
 Probabilistic interpretation may produce agreement, competing interpretations, incomplete
-information, or unresolved ambiguity. These conditions should remain visible in the
-processing state.
+information, or unresolved ambiguity. These states should remain visible rather than being
+silently completed by generation.
 
-In the underlying architecture, \emph{Consensus}, \emph{Variance}, and
+In the investigated architecture, \emph{Consensus}, \emph{Variance}, and
 \emph{Shared Ambiguity} represented different outcomes of multi-perspective interpretation.
-Other implementations may use different mechanisms, but the underlying requirement
-remains the same: unresolved information should not disappear merely because a generative
-system is able to formulate a plausible continuation.
-
-This step therefore defines how ambiguity, contradiction, missing information, and
-insufficient evidence are represented and under which conditions further processing is
-blocked or escalated.
+Other implementations may use different mechanisms, but they likewise need to define when
+processing may continue and when unresolved information has to be retained, reviewed, or
+escalated.
 
 \subsection{Assign Engineering Authority}
 \label{sec:path_authority}
 
-Where AI-generated interpretations can influence subsequent engineering work, the workflow
-needs an explicit decision boundary.
+Where an AI-generated interpretation can affect subsequent engineering work, the
+corresponding decision boundary should be explicit. In the investigated architecture, the
+\emph{Human Engineering Authority} decided whether a defined interpretation state could be
+used as authorized engineering information. A separate \emph{Model Authority} addressed
+structural placement and representation where required.
 
-In the investigated architecture, the \emph{Human Engineering Authority} decided whether
-an interpretation state could be used as authorized engineering information. Where a
-subsequent structural representation decision was required, the \emph{Model Authority}
-addressed that separate decision.
-
-The exact role structure depends on the engineering task. The central requirement is that
-the transition from a probabilistic interpretation to an authorized engineering state is
-explicit and attributable to a defined authority.
-
-Authorization should refer to a clearly identifiable state. If the underlying information
-or interpretation changes materially, the corresponding decision state has changed as
-well.
+The exact role structure is task-dependent. The important point is that consequential
+transitions remain attributable to a defined authority and a clearly identifiable
+information state.
 
 \subsection{Create a Controlled Engineering State}
 \label{sec:path_controlled_state}
 
-After the relevant interpretation and authority decisions have been resolved, downstream
-processing should no longer depend directly on unrestricted AI output.
+Once the relevant interpretation and authority decisions have been resolved, authorized
+engineering information can be transferred into a controlled engineering state that
+provides a stable basis for downstream processing.
 
-Instead, the authorized content can be transferred into a controlled engineering state
-that provides a stable basis for subsequent processing. In the underlying implementation,
-this function was realized by the \emph{Internal Engineering Model} (IEM). The specific
-representation is implementation-dependent; the more general requirement is to separate
-authorized engineering information from the probabilistic processing that produced its
-candidate interpretation.
+In the underlying implementation, this function was realized by the \emph{Internal
+Engineering Model} (IEM). The specific representation is implementation-dependent; its
+general function is to separate authorized engineering information from the probabilistic
+processing that produced its candidate interpretation.
 
-This boundary allows downstream processing to operate on explicit identities, relations,
-rules, and approved engineering content rather than repeatedly reinterpreting the original
-source material.
-
-\subsection{Apply Rules, Constraints, and Verification}
+\subsection{Apply Rules, Constraints, and Assessment}
 \label{sec:path_rules}
 
-Once the decision space has been sufficiently resolved, transformation should become
-rule-bound wherever appropriate. Target-specific constraints, representation rules, and
-technical validation can then be applied to the controlled engineering state.
+Where engineering meaning and representation decisions have been sufficiently resolved,
+downstream processing should become rule-bound wherever appropriate. Target-specific
+constraints, representation rules, and technical validation can then be applied to the
+controlled engineering state.
 
-If the required evidence, authority, or rule is missing, the unresolved condition should
-remain visible. A fail-closed transition prevents the workflow from silently introducing
-new engineering meaning during downstream processing.
-
-Generation and verification remain separate concerns. The resulting artifact should be
-checked using mechanisms appropriate to its purpose and representation. Depending on the
-engineering task, this can include structural validation, semantic constraints, consistency
-checks, tool-based validation, human review, and release criteria.
+If required evidence, authority, or rules remain unresolved, the workflow should retain
+that state rather than silently introduce new engineering meaning. Generation and
+subsequent assessment likewise remain distinct concerns and may include structural or
+semantic checks, tool-based validation, human review, and release criteria.
 
 \subsection{Preserve Traceability and Integrate the Workflow}
 \label{sec:path_integration}
 
-The complete processing path should remain reconstructable from the original information
-basis through interpretation and human decisions to the resulting engineering artifact.
-Provenance and traceability therefore span all preceding steps rather than forming a final
-documentation activity.
+The complete path from source information through interpretation and human decisions to the
+resulting artifact should remain reconstructable. For multi-source workflows, this includes
+preserving source-local provenance when information is integrated into a common engineering
+state.
 
-For multi-source workflows, this also requires preserving source-local provenance when
-information is integrated into a common engineering state.
+Productive use additionally requires organizational integration. Responsibilities, review
+activities, quality gates, and release mechanisms need to fit the existing engineering
+process, while the associated review and authorization effort must remain practicable as
+processing volume increases.
 
-The final step toward productive use is organizational integration. Responsibilities,
-review activities, quality gates, and release mechanisms need to fit the existing
-engineering process. Increasing the scope of AI support also requires evaluating whether
-the associated review and authorization effort remains practicable.
-
-The resulting sequence can therefore be understood as a transition from probabilistic
-interpretation to controlled engineering use: source information is interpreted where
-necessary, consequential decisions remain explicitly authorized, authorized content is
-transferred into a controlled state, downstream processing becomes increasingly
-rule-bound, and the resulting artifact remains traceable and independently verifiable.
+The resulting sequence therefore moves from probabilistic interpretation toward controlled
+engineering use: information is interpreted where necessary, consequential decisions remain
+explicitly authorized, authorized content is transferred into a controlled state,
+downstream processing becomes increasingly rule-bound, and the resulting artifact remains
+traceable and separately assessed.

@@ -51,7 +51,8 @@ to be identified and placed into the relevant system context.
 
 The heterogeneity of engineering information is therefore not only a technical format
 problem but also a semantic one. Information may only become understandable in relation to
-its domain context, terminology, related artifacts, or existing engineering knowledge. This
+its domain context, terminology, related artifacts, or existing engineering knowledge
+\cite{Bressan.2000}. This
 interpretation task is one area in which probabilistic AI can provide value, because it can
 generate possible interpretations of weakly structured or natural-language information.
 
@@ -60,8 +61,8 @@ or formally valid result does not provide direct evidence of engineering correct
 Studies of LLM-generated systems-engineering artifacts have shown that outputs resembling
 expert artifacts can still contain technically relevant errors or unsupported assumptions
 \cite{Topcu2025}. Related approaches to model generation therefore combine generative
-processing with additional constraints or validation mechanisms
-\cite{Cibrian.2025,Stein2026}.
+processing with intermediate representations, additional constraints, or validation
+mechanisms \cite{Cibrian.2025,Stein2026,Pan.2025}.
 
 The underlying investigation addressed this problem by applying several configured
 perspectives to the same source-grounded engineering subject. Agreement between
@@ -120,7 +121,7 @@ retained, the relationship between the result and the decisions that produced it
 
 Provenance describes the origin and derivation of information
 \cite{MoreauMissier2013,Simmhan2005}. Traceability connects the resulting information,
-decision, and artifact states. In the underlying investigation, source-grounded evidence,
+decision, and artifact states \cite{ISO29148}. In the underlying investigation, source-grounded evidence,
 AI-generated interpretations, human authorization decisions, intermediate model states,
 and the final artifact remained explicitly connected. This allowed the processing path to
 be reconstructed from source to result and, conversely, from a resulting model element back
@@ -130,11 +131,11 @@ This becomes increasingly relevant when several Engineering Sources contribute t
 engineering result. Related information may need to be considered jointly while the
 individual origin and authorization state of each contribution remain distinguishable.
 
-Finally, generation and verification address different questions. The fact that an AI
-system can produce an artifact does not demonstrate that the artifact satisfies the relevant
-engineering, formal, or technical criteria. Appropriate verification and validation
-mechanisms therefore have to be defined independently of the generation step
-\cite{Topcu2025,Cibrian.2025,Stein2026}.
+Finally, generation and the subsequent assessment of the resulting artifact address
+different questions. The fact that an AI system can produce an artifact does not demonstrate
+that the artifact satisfies the relevant engineering, formal, or technical criteria.
+Appropriate assessment mechanisms therefore have to be defined separately from the
+generation step \cite{Topcu2025,Cibrian.2025,Stein2026}.
 
 Moving from a bounded AI-supported task toward productive engineering use adds an
 organizational dimension. The workflow has to be integrated into existing responsibilities,
