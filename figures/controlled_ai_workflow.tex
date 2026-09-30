@@ -1,0 +1,170 @@
+\begin{figure*}[t]
+\centering
+
+\begin{tikzpicture}[
+    font=\footnotesize,
+    node distance=6mm and 7mm,
+    box/.style={
+        draw,
+        rounded corners=1.5pt,
+        align=center,
+        minimum height=8mm,
+        text width=34mm,
+        inner sep=3pt
+    },
+    smallbox/.style={
+        draw,
+        rounded corners=1.5pt,
+        align=center,
+        minimum height=8mm,
+        text width=29mm,
+        inner sep=3pt
+    },
+    widebox/.style={
+        draw,
+        rounded corners=1.5pt,
+        align=center,
+        minimum height=8mm,
+        text width=47mm,
+        inner sep=3pt
+    },
+    arrow/.style={
+        -{Latex[length=2mm]},
+        line width=0.6pt
+    },
+    influence/.style={
+        -{Latex[length=2mm]},
+        line width=0.6pt,
+        dashed
+    },
+    span/.style={
+        draw,
+        dashed,
+        rounded corners=1.5pt,
+        inner sep=4pt
+    }
+]
+
+% ------------------------------------------------------------------
+% Information basis
+% ------------------------------------------------------------------
+
+\node[smallbox] (engsource)
+    {Engineering\\Sources};
+
+\node[smallbox, right=18mm of engsource] (contextsource)
+    {Context\\Sources};
+
+\node[smallbox, right=18mm of contextsource] (processingcontext)
+    {Processing and\\Orchestration Context};
+
+\node[widebox, below=9mm of engsource] (evidence)
+    {Source-grounded Evidence};
+
+\node[widebox, below=9mm of contextsource] (interpretation)
+    {Probabilistic Interpretation};
+
+\draw[arrow] (engsource) -- (evidence);
+
+\draw[arrow]
+    (evidence.east)
+    -| ($(interpretation.north west)+(4mm,0)$);
+
+\draw[arrow]
+    (contextsource.south)
+    -- (interpretation.north);
+
+\draw[influence]
+    (processingcontext.south)
+    -| ($(interpretation.north east)+(-4mm,0)$);
+
+% ------------------------------------------------------------------
+% Interpretation outcome
+% ------------------------------------------------------------------
+
+\node[widebox, below=8mm of interpretation] (uncertainty)
+    {Decision Evidence:\\
+     Consensus, Variance, Shared Ambiguity};
+
+\node[widebox, below=8mm of uncertainty] (hea)
+    {\textbf{Human Engineering Authority}\\
+     Authorization of Engineering Meaning};
+
+\node[widebox, below=8mm of hea] (authorized)
+    {Authorized Engineering Information};
+
+\draw[arrow] (interpretation) -- (uncertainty);
+\draw[arrow] (uncertainty) -- (hea);
+\draw[arrow] (hea) -- (authorized);
+
+% ------------------------------------------------------------------
+% Model / representation authority
+% ------------------------------------------------------------------
+
+\node[widebox, below=8mm of authorized] (modelauthority)
+    {\textbf{Model Authority}\\
+     Structural Placement and Representation};
+
+\node[widebox, below=8mm of modelauthority] (controlled)
+    {Controlled Engineering State\\
+     \emph{e.g., Internal Engineering Model (IEM)}};
+
+\node[widebox, below=8mm of controlled] (rules)
+    {Rules, Constraints, and\\
+     Target-specific Formulation};
+
+\node[widebox, below=8mm of rules] (artifact)
+    {Engineering Artifact};
+
+\draw[arrow] (authorized) -- (modelauthority);
+\draw[arrow] (modelauthority) -- (controlled);
+\draw[arrow] (controlled) -- (rules);
+\draw[arrow] (rules) -- (artifact);
+
+% ------------------------------------------------------------------
+% Assessment and release
+% ------------------------------------------------------------------
+
+\node[smallbox, below left=9mm and 7mm of artifact] (validation)
+    {Technical\\Validation};
+
+\node[smallbox, below right=9mm and 7mm of artifact] (review)
+    {Human Model\\Review};
+
+\node[widebox, below=13mm of artifact] (release)
+    {Release};
+
+\draw[arrow] (artifact) -- (validation);
+\draw[arrow] (artifact) -- (review);
+
+\draw[arrow]
+    (validation.south)
+    |- ($(release.west)+(0,0)$);
+
+\draw[arrow]
+    (review.south)
+    |- ($(release.east)+(0,0)$);
+
+% ------------------------------------------------------------------
+% Cross-cutting provenance and traceability
+% ------------------------------------------------------------------
+
+\node[
+    span,
+    fit=(engsource)(processingcontext)(evidence)(interpretation)
+        (uncertainty)(hea)(authorized)(modelauthority)
+        (controlled)(rules)(artifact)(validation)(review)(release),
+    label={[rotate=90,anchor=south]west:
+        \textbf{Provenance and Traceability}}
+] (tracebox) {};
+
+\end{tikzpicture}
+
+\caption{Generalized processing structure for controlled AI-supported engineering.
+Engineering Sources provide the basis for source-grounded evidence, while Context Sources
+support interpretation and the Processing and Orchestration Context influences how the
+interpretation is produced. Probabilistic outputs remain decision evidence until explicitly
+authorized. The Internal Engineering Model (IEM) illustrates one implementation of the more
+general controlled engineering state.}
+\label{fig:controlled_ai_workflow}
+\end{figure*}

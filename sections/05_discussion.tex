@@ -1,0 +1,107 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The principles derived in the preceding sections originate from the development and
+investigation of a controlled transformation architecture for heterogeneous legacy
+engineering information into SysML v2. Their relevance beyond this specific application
+therefore needs to be distinguished from those aspects that remain bound to the investigated
+engineering task.
+
+\subsection{Transferability and Context Dependence}
+\label{sec:discussion_transferability}
+
+Several mechanisms investigated in the underlying architecture are not inherently tied to
+SysML v2 as a target representation. Source processing, provenance, stable identities,
+persisted processing states, probabilistic interpretation, and explicit human authorization
+address more general problems that also occur in other information-centered engineering
+tasks.
+
+This provides a basis for considering similar mechanisms in workflows such as requirements
+review, technical-documentation analysis, or quality and regulatory documentation review.
+Such tasks likewise involve heterogeneous documents that have to be interpreted in relation
+to an engineering context and whose resulting assessments may require explicit human
+decisions.
+
+The transferability of these mechanisms should nevertheless be understood as a further
+hypothesis rather than as an empirically demonstrated property across engineering domains.
+The underlying investigation was limited to a specific brownfield transformation task and
+to a defined SysML-v2 target.
+
+In particular, task-specific aspects cannot simply be transferred unchanged. The relevant
+Engineering Sources and Context Sources, the perspectives used for probabilistic
+interpretation, the authority boundaries, the controlled engineering state, the
+target-specific rules, and the assessment mechanisms all depend on the engineering
+purpose.
+
+The resulting distinction is important. The transferable part is not one fixed workflow
+configuration, but the separation of functions: controlled source processing,
+probabilistic interpretation, explicit engineering decisions, persistent states,
+rule-bound downstream processing, provenance, traceability, and separate assessment.
+
+\subsection{From Controlled Prototype to Productive Engineering Use}
+\label{sec:discussion_productive_use}
+
+The investigated architecture demonstrates a controlled processing path under bounded
+conditions. Productive use introduces additional questions that were only addressed to a
+limited extent in the underlying work.
+
+A first challenge concerns the information basis itself. Productive environments contain
+larger and less curated information sets, additional document types, changing information
+states, and potentially broader sets of engineering constructs. The mechanisms for source
+classification, interpretation, authorization, and controlled integration therefore need to
+remain effective as the amount and diversity of information increase.
+
+A second challenge concerns human review. Explicit authorization provides a control
+boundary, but it also creates review effort. As the processing volume increases, the
+scalability of human review and authorization becomes part of the engineering problem.
+The relevant question is therefore not whether the human expert should be removed from the
+process, but how human attention can be focused on those states in which engineering
+judgement is actually required.
+
+A third challenge is the integration into an existing engineering workflow. Domain
+references, interpretation perspectives, rules, representation frameworks, review
+responsibilities, and release mechanisms need to fit the respective organizational
+context. The practical quality of such a workflow therefore depends not only on model
+performance but also on the comprehensibility of the provided decision basis, the actual
+review effort, and the compatibility of the authority boundaries with established working
+practices.
+
+Finally, productive use also requires the conventional qualities expected from an
+engineering software system. Software quality, runtime behavior, resource demand,
+robustness, maintainability, and operational integration remain relevant independently of
+the AI-specific architecture.
+
+These aspects reinforce the main observation of this paper: moving from an AI-supported
+demonstrator to productive engineering use is not merely a matter of improving the
+underlying model. The information basis, decision boundaries, engineering rules,
+assessment mechanisms, and organizational workflow have to evolve together.
+
+\subsection{Learning from Human Engineering Decisions}
+\label{sec:discussion_learning}
+
+Persisted human decisions create an additional long-term perspective. Over repeated use,
+an AI-supported engineering workflow can accumulate a structured data basis that connects
+engineering information, machine-generated proposals, and the corresponding human
+evaluations or corrections.
+
+Research on learning from human feedback demonstrates that human evaluations can provide
+useful learning signals for adaptive systems \cite{Christiano2017,Ouyang2022}. In an
+engineering context, however, such feedback remains meaningful only if it can be related to
+the information state and decision context from which it originated.
+
+The provenance and state persistence required for traceability can therefore also provide
+a basis for controlled learning. Repeated corrections may indicate that interpretation
+instructions, examples, rules, or specialized models should be adapted. Such adaptations
+should themselves be versioned, evaluated separately, and explicitly released before they
+become part of the productive workflow.
+
+With increasing quality of machine-generated interpretations, human review may eventually
+be concentrated more strongly on cases characterized by relevant uncertainty, variance,
+contradictory information, or novel situations. Whether individual decisions can be further
+automated should, however, be determined empirically from future application data rather
+than assumed from model capability alone.
+
+This perspective extends the architecture from a controlled transformation process toward
+a potentially adaptive engineering workflow while retaining the same fundamental
+requirement: changes in automated behavior must remain attributable, assessable, and
+subject to explicit engineering control.
