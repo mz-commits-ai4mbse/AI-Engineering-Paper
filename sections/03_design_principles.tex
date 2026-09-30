@@ -22,7 +22,7 @@ Consequently, the engineering purpose, expected output, and boundaries of AI sup
 be defined before technical implementation choices are made.
 
 A bounded task also creates the basis for later decisions about information authority,
-human review, verification, and acceptable automation.
+human review, assessment, and acceptable automation.
 
 \subsection{Establish a Controlled Information Basis}
 \label{sec:principle_information_basis}
@@ -100,9 +100,9 @@ artifact.
 
 The exact authority roles are context dependent. Some engineering tasks may require fewer
 decision boundaries, while others may require additional domain, quality, or release
-authorities. The transferable principle is that consequential state transitions should have
-an explicitly assigned decision authority instead of allowing probabilistic processing to
-implicitly determine their outcome.
+authorities. The general design principle proposed here is that consequential state
+transitions should have an explicitly assigned decision authority instead of allowing
+probabilistic processing to implicitly determine their outcome.
 
 Authorization should refer to a clearly identifiable information state. If that state is
 materially changed, the previous authorization should not automatically be assumed to remain
@@ -122,7 +122,7 @@ and transformation rules before the final artifact was produced.
 
 This principle reduces the number of points at which probabilistic behavior can change an
 already established engineering decision. It also improves the ability to reproduce and
-verify downstream processing.
+assess downstream processing.
 
 A related consequence is fail-closed behavior. If required evidence, authorization, or a
 necessary transformation rule is missing, processing should expose the unresolved condition
