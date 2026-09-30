@@ -1,0 +1,144 @@
+\section{What Makes AI-Supported Engineering Difficult?}
+\label{sec:challenges}
+
+The use of generative AI in engineering differs from unconstrained content generation.
+Engineering information contributes to technical decisions, system descriptions, models,
+requirements, and other artifacts that may remain relevant throughout the system lifecycle.
+AI-supported processing must therefore consider not only whether technically plausible
+content can be generated, but also how the underlying information is interpreted, which
+results may be used for subsequent engineering activities, and how the resulting states
+remain verifiable and traceable.
+
+\subsection{Engineering Task and Information Basis}
+\label{sec:challenge_information_basis}
+
+The introduction of AI support first requires a sufficiently bounded engineering task.
+The intended result determines which source information is relevant, which interpretation
+steps are required, and which criteria can later be used to assess the result. This becomes
+particularly important in brownfield environments, where relevant system information may
+already exist across specifications, tables, technical documents, models, or further data
+sources \cite{Maheshwari2018,Henderson2024}.
+
+Such information does not generally form a uniform or fully formalized basis. Sources may
+differ in format, degree of structure, terminology, granularity, level of abstraction, and
+currency. Several sources may describe the same system aspect from different perspectives,
+complement each other, or contain diverging statements. The processing task therefore
+cannot be reduced to making existing documents technically accessible.
+
+A controlled AI-supported workflow also has to distinguish the role that available
+information plays within the engineering task. In the underlying investigation,
+\emph{Engineering Sources} formed the domain-specific information basis from which
+statements about the system could be derived. \emph{Context Sources} provided additional
+information for interpretation and classification without themselves constituting the
+engineering evidence for the system under consideration. The \emph{Processing and
+Orchestration Context}, including prompts, agent roles, and processing configurations,
+influenced how information was processed but likewise did not establish engineering facts.
+
+This distinction is relevant beyond the investigated transformation task. Information that
+supports interpretation should not implicitly acquire the same authority as information
+that constitutes the engineering basis itself. At the same time, the conditions under which
+a result was generated remain relevant for understanding its origin. Provenance therefore
+concerns both the source information and the processing context that contributed to the
+result \cite{MoreauMissier2013,Simmhan2005}.
+
+\subsection{Interpretation, Heterogeneity, and Uncertainty}
+\label{sec:challenge_interpretation}
+
+For formally defined source and target models, transformation can be governed by explicit
+rules and metamodels. Heterogeneous legacy information introduces an additional problem:
+before information can be transformed into a target structure, its engineering meaning has
+to be identified and placed into the relevant system context.
+
+The heterogeneity of engineering information is therefore not only a technical format
+problem but also a semantic one. Information may only become understandable in relation to
+its domain context, terminology, related artifacts, or existing engineering knowledge. This
+interpretation task is one area in which probabilistic AI can provide value, because it can
+generate possible interpretations of weakly structured or natural-language information.
+
+However, probabilistic interpretation introduces uncertainty. A linguistically convincing
+or formally valid result does not provide direct evidence of engineering correctness.
+Studies of LLM-generated systems-engineering artifacts have shown that outputs resembling
+expert artifacts can still contain technically relevant errors or unsupported assumptions
+\cite{Topcu2025}. Related approaches to model generation therefore combine generative
+processing with additional constraints or validation mechanisms
+\cite{Cibrian.2025,Stein2026}.
+
+The underlying investigation addressed this problem by applying several configured
+perspectives to the same source-grounded engineering subject. Agreement between
+interpretations provided information about \emph{Consensus}, while relevant differences
+were represented as \emph{Variance}. A situation in which several perspectives identified
+the same unresolved information or ambiguity was represented as \emph{Shared Ambiguity}.
+Such multi-perspective processing can provide additional evidence for subsequent evaluation,
+but agreement alone does not establish that an interpretation is correct
+\cite{Du2024,TriemDing2024}.
+
+The more general implication is that uncertainty should remain visible within an
+AI-supported engineering process. Missing information, conflicting interpretations, or
+insufficient evidence should not automatically be converted into apparently complete
+engineering information by generative processing.
+
+\subsection{Engineering Authority and Controlled Processing}
+\label{sec:challenge_authority}
+
+Probabilistic interpretation and engineering decision-making represent different functions.
+AI-generated interpretations can provide decision support, but the decision whether a
+particular interpretation may be used for subsequent engineering activities has a different
+status.
+
+Human-in-the-loop approaches describe different forms of human participation, ranging from
+supervision and feedback to explicit evaluation and decision-making
+\cite{MosqueiraRey2023,Lazaros2026}. In the investigated architecture, human involvement
+was therefore represented as explicit decision authority at defined transitions of the
+engineering process.
+
+The \emph{Human Engineering Authority} authorized the domain-specific use of interpreted
+engineering information. This decision referred to a defined information state rather than
+to an abstract source or an unrestricted AI output. A materially changed state therefore
+required a new evaluation.
+
+A separate \emph{Model Authority} addressed a different decision object: how already
+authorized engineering information should be structurally placed and represented in the
+target model. This distinction emerged from the observation that engineering meaning,
+structural representation, and target-specific formulation are not necessarily identical
+decisions.
+
+The exact authority roles depend on the engineering task. The general challenge is to avoid
+allowing probabilistic processing to implicitly determine consequential engineering states.
+Once the required engineering meaning, authority, and representation rules have been
+resolved, subsequent processing can increasingly rely on explicit rules and constraints.
+Conversely, if the required evidence, authorization, or transformation rule is missing, the
+unresolved state should remain visible rather than being silently completed by the AI
+system.
+
+\subsection{Traceability, Assurance, and Integration}
+\label{sec:challenge_assurance}
+
+AI-supported engineering creates a chain of information states rather than a single
+generation event. Source information may be identified, interpreted, evaluated, authorized,
+transformed, and finally represented in a technical artifact. If only the final artifact is
+retained, the relationship between the result and the decisions that produced it is lost.
+
+Provenance describes the origin and derivation of information
+\cite{MoreauMissier2013,Simmhan2005}. Traceability connects the resulting information,
+decision, and artifact states. In the underlying investigation, source-grounded evidence,
+AI-generated interpretations, human authorization decisions, intermediate model states,
+and the final artifact remained explicitly connected. This allowed the processing path to
+be reconstructed from source to result and, conversely, from a resulting model element back
+to its underlying information and decisions.
+
+This becomes increasingly relevant when several Engineering Sources contribute to a common
+engineering result. Related information may need to be considered jointly while the
+individual origin and authorization state of each contribution remain distinguishable.
+
+Finally, generation and verification address different questions. The fact that an AI
+system can produce an artifact does not demonstrate that the artifact satisfies the relevant
+engineering, formal, or technical criteria. Appropriate verification and validation
+mechanisms therefore have to be defined independently of the generation step
+\cite{Topcu2025,Cibrian.2025,Stein2026}.
+
+Moving from a bounded AI-supported task toward productive engineering use adds an
+organizational dimension. The workflow has to be integrated into existing responsibilities,
+quality mechanisms, and engineering processes. In addition, increasing processing volume
+also increases the need to consider the scalability of human review and authorization.
+These questions extend beyond model capability and make productive AI-supported engineering
+a combined information, process, and systems-engineering challenge.

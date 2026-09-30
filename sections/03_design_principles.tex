@@ -1,0 +1,181 @@
+\section{Design Principles for Controlled AI-Supported Engineering}
+\label{sec:design_principles}
+
+The challenges described in Section~\ref{sec:challenges} can be translated into a set of
+design principles for controlled AI-supported engineering. These principles do not define
+one universal implementation architecture. Instead, they describe boundaries and control
+mechanisms that proved relevant in the underlying investigation. Their potential
+transferability to comparable engineering tasks is discussed in
+Section~\ref{sec:discussion_transferability}.
+
+\subsection{Start from the Engineering Task}
+\label{sec:principle_task}
+
+AI support should be designed around a sufficiently bounded engineering task. The intended
+engineering result defines which information is relevant, which interpretation steps are
+necessary, and which acceptance criteria can later be applied.
+
+This task orientation is important because an AI model does not define the engineering
+process in which its output will be used. The same model may support fundamentally different
+activities, from information extraction to requirements analysis or model generation.
+Consequently, the engineering purpose, expected output, and boundaries of AI support need to
+be defined before technical implementation choices are made.
+
+A bounded task also creates the basis for later decisions about information authority,
+human review, verification, and acceptable automation.
+
+\subsection{Establish a Controlled Information Basis}
+\label{sec:principle_information_basis}
+
+AI-supported engineering should operate on an explicitly defined information basis. The
+relevant question is not only which information is available, but also which information may
+justify engineering statements and which information merely supports their interpretation.
+
+The investigated architecture therefore distinguished between \emph{Engineering Sources},
+\emph{Context Sources}, and the \emph{Processing and Orchestration Context}. This distinction
+made it possible to separate domain-specific engineering evidence from information that
+supported interpretation or influenced processing.
+
+The exact source taxonomy depends on the engineering task. The general principle is that
+different information roles should remain explicit and should not silently inherit the same
+engineering authority. At the same time, information required to understand how a result was
+produced should remain available as provenance.
+
+\subsection{Use Probabilistic AI Where Interpretation Is Required}
+\label{sec:principle_probabilistic}
+
+Probabilistic AI is particularly useful where engineering information cannot be transformed
+through explicit rules alone and instead requires semantic interpretation.
+
+This situation occurs when source information is weakly structured, expressed in natural
+language, uses inconsistent terminology, or can only be understood in relation to wider
+domain context. In such cases, probabilistic processing can generate candidate
+interpretations and thereby provide information for a subsequent engineering decision.
+
+Where source and target semantics are already sufficiently formalized, however, additional
+probabilistic processing may add unnecessary variability. Formal model-transformation
+approaches demonstrate that explicit transformation rules can provide deterministic behavior
+where the required relationships are already known \cite{Kapos.2014,Li.2022,Zhou.2024}.
+
+The resulting principle is therefore not to maximize AI usage, but to place probabilistic
+processing at those points where interpretation is actually required.
+
+\subsection{Make Uncertainty Explicit}
+\label{sec:principle_uncertainty}
+
+Probabilistic processing should not convert uncertainty into apparently complete engineering
+information without making the unresolved state visible.
+
+In the underlying investigation, several configured perspectives were used to expose
+different interpretation outcomes. Agreement could be represented as \emph{Consensus},
+differences as \emph{Variance}, and jointly recognized unresolved information as
+\emph{Shared Ambiguity}. These states provided additional information for subsequent human
+evaluation.
+
+The specific mechanism is not essential to the general principle. Multiple AI perspectives
+represent one possible way to expose uncertainty, but other workflows may use confidence
+indicators, contradiction detection, explicit unknown states, or targeted review triggers.
+
+The important distinction is that uncertainty should remain part of the engineering state.
+Agreement may strengthen the evidence available for a decision, but does not by itself prove
+engineering correctness. Likewise, missing information should remain identifiable as missing
+rather than being completed solely because a generative system can produce a plausible
+continuation.
+
+\subsection{Keep Engineering Authority Explicitly Assigned}
+\label{sec:principle_authority}
+
+AI-generated interpretations can support engineering decisions without themselves acquiring
+engineering authority.
+
+In the investigated architecture, the \emph{Human Engineering Authority} decided whether a
+defined interpretation state could be used as authorized engineering information. A separate
+\emph{Model Authority} addressed the structural placement and representation of already
+authorized content in the target model.
+
+This separation emerged because engineering meaning and model representation constituted
+different decision objects. A statement may be accepted as technically meaningful without
+this automatically determining how it should be represented in a model or downstream
+artifact.
+
+The exact authority roles are context dependent. Some engineering tasks may require fewer
+decision boundaries, while others may require additional domain, quality, or release
+authorities. The transferable principle is that consequential state transitions should have
+an explicitly assigned decision authority instead of allowing probabilistic processing to
+implicitly determine their outcome.
+
+Authorization should refer to a clearly identifiable information state. If that state is
+materially changed, the previous authorization should not automatically be assumed to remain
+valid.
+
+\subsection{Constrain Downstream Processing Once Decisions Are Resolved}
+\label{sec:principle_constraints}
+
+Once the relevant engineering meaning, decision authority, and representation rules are
+sufficiently resolved, subsequent processing should become increasingly rule-bound and
+reproducible.
+
+The investigated architecture used this separation to avoid repeated probabilistic
+reinterpretation of already authorized information. Authorized engineering content was
+carried forward into a controlled engineering state and processed through explicit modeling
+and transformation rules before the final artifact was produced.
+
+This principle reduces the number of points at which probabilistic behavior can change an
+already established engineering decision. It also improves the ability to reproduce and
+verify downstream processing.
+
+A related consequence is fail-closed behavior. If required evidence, authorization, or a
+necessary transformation rule is missing, processing should expose the unresolved condition
+rather than silently infer a continuation. This does not imply that every workflow must stop
+at the same type of event. It means that unresolved engineering decisions should not be
+hidden by automatic completion.
+
+\subsection{Preserve Provenance and Traceability}
+\label{sec:principle_traceability}
+
+Controlled AI-supported engineering requires more than storing the final result. The
+relationships between source information, AI-generated interpretations, human decisions,
+intermediate engineering states, and resulting artifacts should remain reconstructable.
+
+Provenance describes where information originates and how it was derived
+\cite{MoreauMissier2013,Simmhan2005}. Traceability connects the relevant engineering states
+and decision objects throughout the workflow. Together, they make it possible to determine
+why a result exists, which information contributed to it, and which decisions authorized its
+use.
+
+This becomes particularly important in multi-source scenarios. Information from several
+Engineering Sources may contribute to one resulting engineering state, but integration
+should not remove the ability to identify the individual source contribution and its
+associated decision history.
+
+Persisted intermediate states also support change analysis. If a source changes, affected
+interpretations, decisions, and downstream artifacts can be identified rather than treating
+the final result as an isolated output.
+
+\subsection{Verify Results Independently of Their Generation}
+\label{sec:principle_verification}
+
+Generation and the subsequent assessment of the resulting engineering artifact should
+remain distinct functions.
+
+An AI system may produce a syntactically plausible or formally valid artifact while the
+artifact still contains engineering-relevant errors, incomplete relationships, or unsupported
+content \cite{Topcu2025,Cibrian.2025,Stein2026}. The fact that the generation process
+completed successfully is therefore not sufficient evidence that the result satisfies its
+engineering purpose.
+
+The required assessment mechanisms should instead be selected according to the target
+artifact and the engineering task. Depending on the application, this may include syntax
+checks, structural validation, semantic constraints, consistency checks, model-tool
+validation, human model review, or further domain-specific acceptance criteria.
+
+The investigated architecture treated technical validation, human review, and final release
+as distinct concerns. This separation prevents successful generation from being interpreted
+as automatic approval and creates an explicit assurance boundary before the resulting
+artifact is used in subsequent engineering work.
+
+Taken together, these principles describe a controlled division of responsibilities:
+probabilistic AI supports interpretation where ambiguity exists; engineering authority
+governs consequential decisions; rule-bound processing handles sufficiently determined
+states; provenance and traceability preserve the processing history; and independent
+verification provides evidence about the resulting artifact.

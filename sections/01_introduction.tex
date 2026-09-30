@@ -1,0 +1,45 @@
+\section{Introduction}
+
+Generative artificial intelligence has expanded the range of engineering activities that
+can be supported by automated information processing. Large language models can interpret
+natural-language specifications, generate technical artifacts, support model creation, and
+assist with the analysis of heterogeneous engineering information. Recent work has shown
+both the potential of such approaches and their limitations in systems engineering and
+model-based engineering contexts \cite{Topcu2025,Stein2026,Cibrian.2025}.
+
+The introduction of generative AI into engineering workflows is nevertheless not equivalent
+to the establishment of a reliable engineering process. Engineering information is often
+distributed across heterogeneous legacy sources, differs in structure, terminology,
+granularity, and abstraction level, and may evolve over time
+\cite{Maheshwari2018,Henderson2024,Legat2014}. In such environments, technical access to
+information does not by itself resolve the question of what the information means, how
+reliable a particular interpretation is, or whether it may be used as the basis for a
+subsequent engineering decision.
+
+This distinction is particularly relevant for probabilistic AI. A generated result may be
+linguistically convincing or formally valid while still containing engineering-relevant
+errors or unsupported assumptions \cite{Topcu2025,Stein2026}. Consequently, the central
+question is not only whether AI can produce engineering-related output, but under which
+conditions such output can become part of a controlled engineering workflow.
+
+The underlying investigation of this paper addressed this problem in the context of a
+controlled AI-supported transformation of heterogeneous legacy engineering information
+into SysML v2. The developed architecture combined source-grounded information,
+probabilistic interpretation, explicit human authorization, controlled downstream
+transformation, provenance, traceability, and technical validation. Repeated transformation
+runs were used to refine the boundaries between information processing, engineering
+decision-making, and model formation.
+
+Based on these findings and the literature used in the underlying investigation, this paper
+derives generalized design principles for AI-supported engineering. The focus is deliberately
+not placed on one particular technical implementation. Instead, the paper addresses the
+questions that need to be resolved when probabilistic AI becomes part of an engineering
+process: what information may support engineering statements, where interpretation is
+required, how uncertainty is handled, where engineering authority resides, how processing
+is constrained, and how resulting artifacts remain traceable and independently verifiable.
+
+The remainder of the paper is structured as follows. Section II outlines the main challenges
+of AI-supported engineering. Section III derives design principles for controlled use.
+Section IV organizes these principles into a structured path toward productive engineering
+application. Section V discusses transferability, context dependence, and limitations, and
+Section VI concludes the paper.

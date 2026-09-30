@@ -1,0 +1,47 @@
+\begin{table*}[t]
+\caption{Key Questions for Designing AI-Supported Engineering Workflows}
+\label{tab:key_questions}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{0.12\textwidth} p{0.35\textwidth} p{0.43\textwidth}}
+\toprule
+\textbf{Area} &
+\textbf{Key Question} &
+\textbf{Design Implication} \\
+\midrule
+
+Task &
+What engineering outcome is required? &
+Bound the engineering task, expected result, and acceptance criteria. \\
+
+Information &
+Which information may justify an engineering statement? &
+Distinguish Engineering Sources from contextual and processing information. \\
+
+Interpretation &
+Where is semantic interpretation required? &
+Use probabilistic processing where explicit transformation rules are insufficient. \\
+
+Uncertainty &
+What happens when information is ambiguous, incomplete, or contradictory? &
+Preserve unresolved states rather than silently completing them. \\
+
+Authority &
+Who decides whether an interpretation may be used for subsequent engineering work? &
+Assign explicit engineering authority at consequential transitions. \\
+
+Processing &
+Which downstream decisions are already sufficiently determined? &
+Apply explicit rules and constraints instead of repeated probabilistic interpretation. \\
+
+Traceability &
+Why does a resulting engineering state exist? &
+Connect sources, interpretations, decisions, intermediate states, and artifacts. \\
+
+Assurance &
+How is the resulting artifact assessed? &
+Keep generation distinct from technical validation, human review, and release. \\
+
+\bottomrule
+\end{tabular}
+\end{table*}
