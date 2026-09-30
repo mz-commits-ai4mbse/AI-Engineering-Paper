@@ -125,25 +125,23 @@
 % Assessment and release
 % ------------------------------------------------------------------
 
-\node[smallbox, below left=7mm and 7mm of artifact] (validation)
+\node[smallbox, below left=7mm and 10mm of artifact] (validation)
     {Technical\\Validation};
 
-\node[smallbox, below right=7mm and 7mm of artifact] (review)
+\node[smallbox, below right=7mm and 10mm of artifact] (review)
     {Human Model\\Review};
 
-\node[widebox, below=10mm of artifact] (release)
+\coordinate (assessmentmid)
+    at ($(validation.south)!0.5!(review.south)$);
+
+\node[widebox, below=7mm of assessmentmid] (release)
     {Release};
 
 \draw[arrow] (artifact) -- (validation);
 \draw[arrow] (artifact) -- (review);
 
-\draw[arrow]
-    (validation.south)
-    |- ($(release.west)+(0,0)$);
-
-\draw[arrow]
-    (review.south)
-    |- ($(release.east)+(0,0)$);
+\draw[arrow] (validation.south) |- (release.west);
+\draw[arrow] (review.south) |- (release.east);
 
 % ------------------------------------------------------------------
 % Cross-cutting provenance and traceability
